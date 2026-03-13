@@ -1,2 +1,2 @@
-
+source ~/.config/custom/bash/aliases
 [[ $- == *i* ]] && bind -f ~/.config/custom/bash/inputrc
