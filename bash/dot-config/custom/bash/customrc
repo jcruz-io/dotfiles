@@ -1,0 +1,2 @@
+
+[[ $- == *i* ]] && bind -f ~/.config/custom/bash/inputrc

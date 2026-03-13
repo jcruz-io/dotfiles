@@ -1,0 +1,5 @@
+# Arrow keys match what you've typed so far against command history
+"\e[6~": history-search-backward
+"\e[5~": history-search-forward
+"\e[A": previous-history
+"\e[B": next-history

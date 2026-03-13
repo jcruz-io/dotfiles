@@ -1,0 +1,1 @@
+/home/jcruz/.config/omarchy/current/theme/neovim.lua
