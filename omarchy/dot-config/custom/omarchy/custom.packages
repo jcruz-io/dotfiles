@@ -1,10 +1,10 @@
 # List of packages installed by hand
 
 7zip
+ecryptfs-utils
 inkscape
 ollama
 pass
-qrencode
 qrencode
 stow
 ttf-cascadia-mono-nerd

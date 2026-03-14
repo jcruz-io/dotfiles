@@ -1,0 +1,42 @@
+# Custom bash functions
+
+PACKAGES_FILE="$HOME/.config/custom/omarchy/custom.packages"
+
+# Add an entry to packages file
+my-pkg-add () {
+  
+  if [ -z "$1" ]; then
+    echo "Use: my-pkg-add \"pkg-name\""
+    return 1 # Usa 'return' en lugar de 'exit' si es una función de shell
+  fi
+ 
+  if [ ! -f "$PACKAGES_FILE" ]; then
+    echo "Error: El archivo $PACKAGES_FILE no existe."
+    return 1
+  fi
+
+  { 
+    head -n 2 "$PACKAGES_FILE"; 
+    { tail -n +3 "$PACKAGES_FILE"; echo "$1"; } | sort -u; 
+  } > "$PACKAGES_FILE.tmp" && mv "$PACKAGES_FILE.tmp" "$PACKAGES_FILE"
+
+  echo "✅ '$1' añadido y lista organizada."
+
+}
+
+# Upgrade my base packages based on packages file
+my-pkg-upgrade () {
+
+  if [ ! -f "$PACKAGES_FILE" ]; then 
+    return 1; 
+  fi
+
+  mapfile -t packages < <(grep -vE '^\s*(#|$)' "$PACKAGES_FILE")
+  
+  if [ ${#packages[@]} -gt 0 ]; then
+    omarchy-pkg-add "${packages[@]}"
+  else
+    echo "No packeges list in $PACKAGES_FILE"
+  fi
+
+}
